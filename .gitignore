@@ -1,0 +1,6 @@
+**/__pycache__/**
+.claude/
+.npm-cache/
+**/node_modules/**
+**/.env
+**/downloads/**
