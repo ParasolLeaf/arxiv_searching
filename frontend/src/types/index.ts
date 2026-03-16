@@ -6,6 +6,7 @@ export interface Paper {
   published: string
   categories: string[]
   pdf_url: string
+  comment: string | null
   relevance_score: number | null
   relevance_reason: string | null
 }
@@ -19,6 +20,7 @@ export interface ChatRequest {
   message: string
   history: ChatMessage[]
   current_papers: Paper[]
+  search_mode: 'keyword' | 'abstract'
 }
 
 export interface ChatResponse {

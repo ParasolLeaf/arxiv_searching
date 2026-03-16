@@ -1,7 +1,16 @@
 import { useState } from 'react'
-import { Download, ExternalLink, CheckCircle, Loader2 } from 'lucide-react'
+import { Download, ExternalLink, CheckCircle, Loader2, Award } from 'lucide-react'
 import type { Paper } from '../types'
 import { downloadPaper } from '../services/api'
+
+const ACCEPTED_RE = /\b(accepted|published)\s+(at|in|by)\s+([^,.;()]+)/i
+
+function extractVenue(comment: string | null): string | null {
+  if (!comment) return null
+  const match = comment.match(ACCEPTED_RE)
+  if (!match) return null
+  return match[0].trim()
+}
 
 interface Props {
   paper: Paper
@@ -36,6 +45,8 @@ export default function PaperCard({ paper, index, onClick }: Props) {
         ? '#f59e0b'
         : '#6b7280'
 
+  const venue = extractVenue(paper.comment)
+
   return (
     <div className="paper-card" onClick={onClick}>
       <div className="paper-card-header">
@@ -56,6 +67,12 @@ export default function PaperCard({ paper, index, onClick }: Props) {
 
       <div className="paper-meta">
         <span className="paper-date">{paper.published}</span>
+        {venue && (
+          <span className="paper-venue">
+            <Award size={11} />
+            {venue}
+          </span>
+        )}
         {paper.categories.slice(0, 3).map((cat) => (
           <span key={cat} className="paper-category">{cat}</span>
         ))}

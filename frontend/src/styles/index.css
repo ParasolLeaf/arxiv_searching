@@ -189,26 +189,71 @@ body {
   font-size: 14px;
 }
 
-/* Chat Input */
-.chat-input {
-  display: flex;
-  gap: 8px;
-  padding: 14px 20px;
+/* Chat Input Area */
+.chat-input-area {
   border-top: 1px solid var(--border);
   background: var(--surface);
 }
 
-.chat-input input {
+.search-mode-toggle {
+  display: flex;
+  gap: 4px;
+  padding: 10px 20px 0;
+}
+
+.mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.mode-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.mode-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Chat Input */
+.chat-input {
+  display: flex;
+  gap: 8px;
+  padding: 10px 20px 14px;
+  background: var(--surface);
+}
+
+.chat-input input,
+.chat-input textarea {
   flex: 1;
   padding: 10px 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   font-size: 14px;
+  font-family: inherit;
   outline: none;
   transition: border-color 0.2s;
+  resize: none;
 }
 
-.chat-input input:focus {
+.chat-input input:focus,
+.chat-input textarea:focus {
   border-color: var(--primary);
 }
 
@@ -262,12 +307,35 @@ body {
 }
 
 .paper-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 16px;
 }
 
 .paper-list-header h2 {
   font-size: 16px;
   color: var(--text);
+}
+
+.sort-select {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.sort-select:hover {
+  border-color: var(--primary);
+}
+
+.sort-select:focus {
+  border-color: var(--primary);
 }
 
 .paper-cards {
@@ -344,6 +412,18 @@ body {
   background: #f3f0ff;
   padding: 2px 8px;
   border-radius: 4px;
+}
+
+.paper-venue {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: #047857;
+  background: #ecfdf5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
 }
 
 .paper-reason {

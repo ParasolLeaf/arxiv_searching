@@ -10,6 +10,7 @@ export default function App() {
   const [papers, setPapers] = useState<Paper[]>([])
   const [loading, setLoading] = useState(false)
   const [selectedPaper, setSelectedPaper] = useState<Paper | null>(null)
+  const [searchMode, setSearchMode] = useState<'keyword' | 'abstract'>('keyword')
 
   const handleSendMessage = async (content: string) => {
     const userMsg: ChatMessage = { role: 'user', content }
@@ -22,6 +23,7 @@ export default function App() {
         message: content,
         history: messages,
         current_papers: papers,
+        search_mode: searchMode,
       })
 
       const assistantMsg: ChatMessage = {
@@ -54,6 +56,8 @@ export default function App() {
         <ChatPanel
           messages={messages}
           loading={loading}
+          searchMode={searchMode}
+          onSearchModeChange={setSearchMode}
           onSend={handleSendMessage}
         />
         <PaperList

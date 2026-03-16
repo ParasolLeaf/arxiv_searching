@@ -10,6 +10,7 @@ class Paper(BaseModel):
     published: str
     categories: list[str]
     pdf_url: str
+    comment: str | None = None
     relevance_score: float | None = None
     relevance_reason: str | None = None
 
@@ -23,6 +24,7 @@ class ChatRequest(BaseModel):
     message: str
     history: list[ChatMessage] = []
     current_papers: list[Paper] = []
+    search_mode: str = "keyword"  # "keyword" | "abstract"
 
 
 class ChatResponse(BaseModel):
